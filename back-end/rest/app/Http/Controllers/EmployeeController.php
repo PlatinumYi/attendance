@@ -31,6 +31,7 @@ class EmployeeController extends Controller
 
     }
 
+
     public function login( Request $request){
 
         $work_number = $request->input('work_number');
@@ -42,5 +43,15 @@ class EmployeeController extends Controller
             return response()->json($this->jsonArray(3,'账号或密码错误'));
         }
 
+    }
+
+    public function getCurrentUser(){
+
+        $user_id = request()->cookie('user');
+        if(!$user_id){
+            return response()->json($this->jsonArray(4,'无人登录'));
+        }else{
+            return response()->json($this->jsonArray(0,'请求成功',[$user_id]));
+        }
     }
 }
