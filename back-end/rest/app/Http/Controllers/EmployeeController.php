@@ -16,7 +16,7 @@ class EmployeeController extends Controller
         }
 
         $name = $request['name'];
-        $password = encrypt($request['password']);
+        $password =  $request['password'];
         $gender = $request['gender'];
         $part = $request['part'];
 
