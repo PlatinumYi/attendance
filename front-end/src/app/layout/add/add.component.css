@@ -1,0 +1,15 @@
+.t{
+    width: 100%;
+}
+.input{
+    width: 50%;
+    border-radius: 10px;
+    border: 1px solid grey;
+    outline: none;
+}
+.btnt{
+    border-radius: 10px;
+}
+.btnc{
+    border-radius: 10px;
+}
