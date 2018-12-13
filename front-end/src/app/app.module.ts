@@ -18,12 +18,8 @@ import { LayoutComponent } from './layout/layout.component';
   declarations: [
     AppComponent,
     LoginComponent,
-<<<<<<< HEAD
-    //LayoutComponent,
-=======
     RegisterComponent,
 
->>>>>>> 50dd9e586a184a08cbe56f7c7715fa733fcaadf7
   ],
   imports: [
     BrowserModule,
