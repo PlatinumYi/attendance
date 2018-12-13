@@ -3,6 +3,7 @@
 namespace App;
 
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Support\Facades\Hash;
 
 class Employee extends Model
 {
@@ -16,7 +17,7 @@ class Employee extends Model
 
         $employee->work_number = $work_number ;
         $employee->name = $name ;
-        $employee->password = $password ;
+        $employee->password = Hash::make($password) ;
         $employee->gender = $gender ;
         $employee->part = $part ;
         $employee->t_create = date('Y-m-d H:i:s',time());
@@ -44,8 +45,7 @@ class Employee extends Model
                 ->get()->first() ;
         if(!$employee)
             return false ;
-        $owner_password = decrypt($employee->password);
-        if($owner_password == $password)
+        if(Hash::check($password,$employee->password))
          return $employee->id ;
         else
             return false;
