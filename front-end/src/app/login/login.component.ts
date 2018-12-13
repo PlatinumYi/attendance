@@ -5,7 +5,8 @@ import { Http } from '@angular/http';
 import { ApiService } from '../service/api.service';
 import { promise } from 'protractor';
 import { from } from 'rxjs';
-import { UserService } from '../service/user.service'
+import { UserLoginService } from '../service/user-login.service'
+import { UserStatusService } from '../service/user-status.service';
 // import 'rxjs/add/operator/toPromise';
 
 @Component({
@@ -25,9 +26,7 @@ export class LoginComponent implements OnInit {
     password: new FormControl(''),
   })
 
-  constructor(private http: Http, private apiService: ApiService) {
-    this.api_url = apiService.getUrl() + '/api/login';
-    this.headers = apiService.getHeaders();
+  constructor(private userService: UserLoginService, private userStatusService: UserStatusService) {
   }
 
   onSubmit() {
@@ -37,26 +36,38 @@ export class LoginComponent implements OnInit {
     }
     if(user.work_number.length == 0 || user.password.length == 0){
       this.message = '用户名和密码不能为空'
-      return
+      return;
     }
     
-     console.log(user.work_number + ' - ' + user.password)
-    const url = `${this.api_url}`;
-    return this.http
-      .post(url, JSON.stringify(user), {headers: this.headers})
-      .toPromise()
-      .then(res => {
-        let result = res.json()
-        console.log(res.json())
+    console.log(user.work_number + ' - ' + user.password)
+
+    this.userService.login(user)
+      .then(result => {
         if(result['error_code'] == 3){
           this.message = result['message']
         }
-        if(result['error_code']  == 0){
+        else if(result['error_code']  == 0){
           this.message = result['message']
         }
-        console.log(1)
       })
       .catch(this.handleError);
+    
+    // const url = `${this.api_url}`;
+    // return this.http
+    //   .post(url, JSON.stringify(user), {headers: this.headers})
+    //   .toPromise()
+    //   .then(res => {
+    //     let result = res.json()
+    //     console.log(res.json())
+    //     if(result['error_code'] == 3){
+    //       this.message = result['message']
+    //     }
+    //     if(result['error_code']  == 0){
+    //       this.message = result['message']
+    //     }
+    //     console.log(1)
+    //   })
+    //   .catch(this.handleError);
 
   }
 
@@ -66,6 +77,11 @@ export class LoginComponent implements OnInit {
 }
 
   ngOnInit() {
+    this.userStatusService.getUserStatus()
+      .then(result => {
+        console.log(result['error_code'])
+      })
+      .catch(this.handleError);
   }
 
 }
