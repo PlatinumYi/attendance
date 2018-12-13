@@ -1,3 +1,10 @@
-<p>
-  login works!
-</p>
+<form [formGroup]="loginForm" (ngSubmit)="onSubmit()">
+  <label>用户名：</label>
+  <input type="text" formControlName="username">
+  <label>密码：</label>
+  <input type="password" formControlName="password">
+  <button type="submit" routerLink="{{route}}">登录</button>
+ {{message}}
+</form>
+<br>
+没有账号? <button type="button" routerLink="/register">注册</button>

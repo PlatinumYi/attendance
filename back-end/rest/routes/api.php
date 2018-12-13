@@ -19,6 +19,7 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
 
 Route::post('/register','EmployeeController@addEmployee'); //注册员工
 Route::post('/login',"EmployeeController@login"); //员工登录
+Route::get('/status',"EmployeeController@getCurrentUser");//获取当前登录状态
 
 Route::get('/parts',"PartController@getAllParts"); //获取部门列表
 
