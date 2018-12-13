@@ -19,6 +19,7 @@ export class LoginComponent implements OnInit {
   private api_url ;
   private headers ;
   message: String;
+  route: String;
 
   user: User;
   loginForm = new FormGroup({
@@ -43,11 +44,13 @@ export class LoginComponent implements OnInit {
 
     this.userService.login(user)
       .then(result => {
+        console.log(result)
         if(result['error_code'] == 3){
           this.message = result['message']
         }
         else if(result['error_code']  == 0){
           this.message = result['message']
+          this.route = '/layout'
         }
       })
       .catch(this.handleError);
