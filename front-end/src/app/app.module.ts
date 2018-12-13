@@ -3,18 +3,23 @@ import { NgModule } from '@angular/core';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { HttpModule } from '@angular/http';
 import { ApiService } from './service/api.service';
+
 import { HttpClientModule } from '@angular/common/http';
 
 import { AppComponent } from './app.component';
 import { LoginComponent } from './login/login.component';
 import { AppRoutingModule } from './/app-routing.module';
+
 import { RegisterComponent } from './register/register.component';
+
+import { LayoutComponent } from './layout/layout.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     LoginComponent,
     RegisterComponent,
+
   ],
   imports: [
     BrowserModule,
@@ -23,6 +28,7 @@ import { RegisterComponent } from './register/register.component';
     HttpModule,
     FormsModule,
     ReactiveFormsModule,
+
   ],
   providers: [
     ApiService,
