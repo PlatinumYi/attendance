@@ -7,14 +7,14 @@
 <body>
 
 <ul>
-  <li><a class="active" href="#home">主页</a></li>
-  <li><a href="#news">新闻</a></li>
+  <li><a class="active" routerLink="/layout" routerLinkActive='active'>主页</a></li>
+  <li><a routerLink="/layout" routerLinkActive='active'>注销</a></li>
   <div class="mydropdown">
-    <a href="#" class="mydropbtn">下拉菜单</a>
+    <a  class="mydropbtn" href="#">假期管理</a>
     <div class="mydropdown-content">
-      <a href="#">链接 1</a>
-      <a href="#">链接 2</a>
-      <a href="#">链接 3</a>
+      <a routerLink="/layout/add">添加假单</a>
+      <a routerLink="/layout/mydetail">我的假期</a>
+     
     </div>
   </div>
 </ul>
