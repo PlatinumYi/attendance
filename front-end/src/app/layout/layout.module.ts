@@ -4,6 +4,9 @@ import { LayoutComponent } from './layout.component';
 
 import { LayoutRoutingModule } from './layout-routing.module'
 import { DashboardComponent } from './dashboard/dashboard.component';
+import { HeaderComponent } from './header/header.component';
+import { AddComponent } from './add/add.component';
+import { MydetailComponent } from './mydetail/mydetail.component';
 
 @NgModule({
   imports: [
@@ -13,6 +16,9 @@ import { DashboardComponent } from './dashboard/dashboard.component';
   declarations: [
     LayoutComponent,
     DashboardComponent,
+    HeaderComponent,
+    AddComponent,
+    MydetailComponent,
   ]
 })
 export class LayoutModule { }
