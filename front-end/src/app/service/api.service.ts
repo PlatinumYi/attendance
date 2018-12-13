@@ -9,6 +9,7 @@ export class ApiService {
         headers.set('Content-Type', 'application/x-www-form-urlencoded; charset=UTF-8')
         // headers.set('Access-Control-Allow-Origin', '*'),
         // headers.set('Accept', 'application/json')
+        // headers.set('Authorization', 'application/x-www-form-urlencoded')
         return headers;
     }
 }

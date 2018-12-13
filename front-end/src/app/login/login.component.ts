@@ -44,7 +44,7 @@ export class LoginComponent implements OnInit {
 
     this.userService.login(user)
       .then(result => {
-        console.log(result)
+        console.log('ww'+result)
         if(result['error_code'] == 3){
           this.message = result['message']
         }

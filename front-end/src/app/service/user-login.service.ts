@@ -27,6 +27,10 @@ export class UserLoginService {
       .post(url, JSON.stringify(user), {headers: this.headers})
       .toPromise()
       .then(res => res.json() as responseData)
+      // .then(res => {
+      //   res.json() as responseData
+      //   console.log("qqq"+responseData)
+      // })
       .catch(this.handleError);
   }
 
