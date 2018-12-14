@@ -36,7 +36,7 @@ class EmployeeController extends Controller
 
         $work_number = $request->input('work_number');
         $password = $request->input('password');
-        $employee = Employee::checkPassword($work_number,$password);
+        $employee = Employee::checkPassword((string)$work_number,(string)$password);
         if($employee){
             return response()->json($this->jsonArray(0))->cookie('user',$employee,1440,'/');
         }else{

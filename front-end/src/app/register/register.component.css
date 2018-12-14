@@ -1,0 +1,7 @@
+.footHidden {
+    visibility: hidden;
+}
+
+.footVisible {
+    visibility: visible;
+}

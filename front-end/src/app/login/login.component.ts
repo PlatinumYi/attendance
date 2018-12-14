@@ -7,7 +7,10 @@ import { promise } from 'protractor';
 import { from } from 'rxjs';
 import { UserLoginService } from '../service/user-login.service'
 import { UserStatusService } from '../service/user-status.service';
+import { Router } from '@angular/router';
+import { ToastService } from '../service/toast.service';
 // import 'rxjs/add/operator/toPromise';
+import { ResponseData } from '../common/response-data';
 
 @Component({
   selector: 'app-login',
@@ -18,37 +21,48 @@ export class LoginComponent implements OnInit {
 
   private api_url ;
   private headers ;
-  message: String;
+  message: string;
 
-  user: User;
+//  res:ResponseData;
+
+  // user: User;
+  work_number: string;
+  password: string;
   loginForm = new FormGroup({
-    username: new FormControl(''),
+    work_number: new FormControl(''),
     password: new FormControl(''),
   })
 
-  constructor(private userService: UserLoginService, private userStatusService: UserStatusService) {
+  constructor(private userService: UserLoginService, private userStatusService: UserStatusService, private router: Router, private toastService: ToastService) {
   }
-
+ 
   onSubmit() {
-    var user = {
-      work_number: this.loginForm.value.username,
-      password: this.loginForm.value.password
-    }
-    if(user.work_number.length == 0 || user.password.length == 0){
+    // this.user = {
+    //   work_number: this.loginForm.value.work_number,
+    //   password: this.loginForm.value.password
+    // }
+    this.work_number= this.loginForm.value.work_number,
+    this.password=this.loginForm.value.password
+    // localStorage.setItem('user', this.user);
+    if(this.work_number.length == 0 || this.password.length == 0){
       this.message = '用户名和密码不能为空'
       return;
     }
     
-    console.log(user.work_number + ' - ' + user.password)
+    console.log(this.work_number + ' - ' + this.password)
 
-    this.userService.login(user)
+    this.userService.login(this.work_number, this.password)
       .then(result => {
+        // console.log('ww'+result)
         if(result['error_code'] == 3){
           this.message = result['message']
         }
         else if(result['error_code']  == 0){
           this.message = result['message']
+          this.router.navigate(['/layout'])
+          this.toastService.showToast("登陆成功", 1500)
         }
+        return result;
       })
       .catch(this.handleError);
     
@@ -69,14 +83,17 @@ export class LoginComponent implements OnInit {
     //   })
     //   .catch(this.handleError);
 
-  }
+  } 
 
   private handleError(error: any): Promise<any> {
     console.error('An error occurred', error); 
     return Promise.reject(error.message || error);
-}
+  }
 
   ngOnInit() {
+    // this.user=new User();
+    // this.user.work_number='';
+    // this.user.password='';
     this.userStatusService.getUserStatus()
       .then(result => {
         console.log(result['error_code'])
