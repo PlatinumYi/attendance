@@ -20,6 +20,7 @@ export class AddComponent implements OnInit {
 
   ngOnInit() {
     this.abs=new Absence();
+    this.abs.type=0;
   }
   onSubmit(){
     console.log(this.abs);
