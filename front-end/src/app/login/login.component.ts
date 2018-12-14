@@ -9,6 +9,7 @@ import { UserLoginService } from '../service/user-login.service'
 import { UserStatusService } from '../service/user-status.service';
 import { Router } from '@angular/router';
 // import 'rxjs/add/operator/toPromise';
+import { responseData } from '../common/response-data';
 
 @Component({
   selector: 'app-login',
@@ -22,6 +23,8 @@ export class LoginComponent implements OnInit {
   message: String;
   route: String;
 
+ res:responseData;
+
   user: User;
   work_number: string;
   password: string;
@@ -32,7 +35,7 @@ export class LoginComponent implements OnInit {
 
   constructor(private userService: UserLoginService, private userStatusService: UserStatusService, private router: Router) {
   }
-
+ 
   onSubmit() {
     this.user = {
       work_number: this.loginForm.value.username,
@@ -102,6 +105,9 @@ export class LoginComponent implements OnInit {
 }
 
   ngOnInit() {
+    this.user=new User();
+    this.user.work_number='';
+    this.user.password='';
     this.userStatusService.getUserStatus()
       .then(result => {
         console.log(result['error_code'])
