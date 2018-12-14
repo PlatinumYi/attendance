@@ -10,6 +10,7 @@ import { UserStatusService } from '../service/user-status.service';
 import { Router } from '@angular/router';
 import { ToastService } from '../service/toast.service';
 // import 'rxjs/add/operator/toPromise';
+import { ResponseData } from '../common/response-data';
 
 @Component({
   selector: 'app-login',
@@ -22,7 +23,9 @@ export class LoginComponent implements OnInit {
   private headers ;
   message: string;
 
-  user: User;
+//  res:ResponseData;
+
+  // user: User;
   work_number: string;
   password: string;
   loginForm = new FormGroup({
@@ -32,21 +35,21 @@ export class LoginComponent implements OnInit {
 
   constructor(private userService: UserLoginService, private userStatusService: UserStatusService, private router: Router, private toastService: ToastService) {
   }
-
+ 
   onSubmit() {
-    this.user = {
-      work_number: this.loginForm.value.work_number,
-      password: this.loginForm.value.password
-    }
+    // this.user = {
+    //   work_number: this.loginForm.value.work_number,
+    //   password: this.loginForm.value.password
+    // }
     this.work_number= this.loginForm.value.work_number,
     this.password=this.loginForm.value.password
     // localStorage.setItem('user', this.user);
-    if(this.user.work_number.length == 0 || this.user.password.length == 0){
+    if(this.work_number.length == 0 || this.password.length == 0){
       this.message = '用户名和密码不能为空'
       return;
     }
     
-    console.log(this.user.work_number + ' - ' + this.user.password)
+    console.log(this.work_number + ' - ' + this.password)
 
     this.userService.login(this.work_number, this.password)
       .then(result => {
@@ -88,6 +91,9 @@ export class LoginComponent implements OnInit {
   }
 
   ngOnInit() {
+    // this.user=new User();
+    // this.user.work_number='';
+    // this.user.password='';
     this.userStatusService.getUserStatus()
       .then(result => {
         console.log(result['error_code'])
