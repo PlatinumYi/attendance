@@ -1,10 +1,10 @@
-<form [formGroup]="loginForm" (ngSubmit)="onSubmit()">
+
   <label>用户名：</label>
-  <input type="text" formControlName="username">
+  <input type="text"  [(ngModel)]="user.work_number">
   <label>密码：</label>
-  <input type="password" formControlName="password">
-  <button type="submit" routerLink="{{route}}">登录</button>
+  <input type="password"  [(ngModel)]="user.password">
+  <button type="submit" routerLink="{{route}}" (click)="onSubmit()">登录</button>
  {{message}}
-</form>
+
 <br>
 没有账号? <button type="button" routerLink="/register">注册</button>

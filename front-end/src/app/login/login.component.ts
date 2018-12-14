@@ -8,6 +8,7 @@ import { from } from 'rxjs';
 import { UserLoginService } from '../service/user-login.service'
 import { UserStatusService } from '../service/user-status.service';
 // import 'rxjs/add/operator/toPromise';
+import { responseData } from '../common/response-data';
 
 @Component({
   selector: 'app-login',
@@ -21,6 +22,8 @@ export class LoginComponent implements OnInit {
   message: String;
   route: String;
 
+ res:responseData;
+
   user: User;
   loginForm = new FormGroup({
     username: new FormControl(''),
@@ -29,22 +32,20 @@ export class LoginComponent implements OnInit {
 
   constructor(private userService: UserLoginService, private userStatusService: UserStatusService) {
   }
-
+ 
   onSubmit() {
-    var user = {
-      work_number: this.loginForm.value.username,
-      password: this.loginForm.value.password
-    }
-    if(user.work_number.length == 0 || user.password.length == 0){
+    if(this.user.work_number.length == 0 || this.user.password.length == 0){
       this.message = '用户名和密码不能为空'
       return;
     }
     
-    console.log(user.work_number + ' - ' + user.password)
+    console.log(this.user.work_number + ' - ' + this.user.password)
 
-    this.userService.login(user)
+    this.userService.login(this.user)
       .then(result => {
-        console.log('ww'+result)
+         this.res=result;
+         alert(result.error_code);
+        console.log('ww'+this.res);
         if(result['error_code'] == 3){
           this.message = result['message']
         }
@@ -80,6 +81,9 @@ export class LoginComponent implements OnInit {
 }
 
   ngOnInit() {
+    this.user=new User();
+    this.user.work_number='';
+    this.user.password='';
     this.userStatusService.getUserStatus()
       .then(result => {
         console.log(result['error_code'])

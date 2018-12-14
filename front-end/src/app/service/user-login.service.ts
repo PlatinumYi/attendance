@@ -21,16 +21,12 @@ export class UserLoginService {
   }
 
   login(user: User) : Promise<responseData>{
-    
+    console.log(user);
     const url = `${this.api_url}`;
     return this.http
       .post(url, JSON.stringify(user), {headers: this.headers})
       .toPromise()
       .then(res => res.json() as responseData)
-      // .then(res => {
-      //   res.json() as responseData
-      //   console.log("qqq"+responseData)
-      // })
       .catch(this.handleError);
   }
 
