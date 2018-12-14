@@ -12,6 +12,7 @@ export class MydetailComponent implements OnInit {
   constructor() { }
 
   ngOnInit() {
+    
   }
 
 }

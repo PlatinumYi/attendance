@@ -7,6 +7,7 @@ import { DashboardComponent } from './dashboard/dashboard.component';
 import { HeaderComponent } from './header/header.component';
 import { AddComponent } from './add/add.component';
 import { MydetailComponent } from './mydetail/mydetail.component';
+import { JudgeComponent } from './judge/judge.component';
 
 @NgModule({
   imports: [
@@ -19,6 +20,7 @@ import { MydetailComponent } from './mydetail/mydetail.component';
     HeaderComponent,
     AddComponent,
     MydetailComponent,
+    JudgeComponent,
   ]
 })
 export class LayoutModule { }

@@ -1,20 +1,18 @@
 <head>
-  <meta charset="UTF-8">
-  <title>Login</title>
+    <meta charset="UTF-8">
+    <title>Login</title>
 </head>
-
-  <div id="login">
-    <h1>Login</h1>
-    <form [formGroup]="loginForm" (ngSubmit)="onSubmit()">
-      
-      <input type="text" placeholder= "用户名" formControlName="username">
-      
-      <input type="password" placeholder= "密码" formControlName="password">
-      <button class ="btn" type="submit">登录</button>
-      {{message}}
+<body>
+  <div id = "login">
+    <h1>登陆</h1>
+    <form class="login" [formGroup]="loginForm" (ngSubmit)="onSubmit()">
+  
+      <input type="text" formControlName="username" placeholder="用户名">
+      <input type="password" formControlName="password" placeholder="密码">
+      <button type="submit" class="btn">登录</button>
+      {{message}}{{route}}
     </form>
     <br>
-       <span>
-      没有账号? <button class="btnz" type="button" routerLink="/register">注册</button>
-      </span>
+    没有账号? <button type="button" class="btnz" routerLink="/register">注册</button>
   </div>
+</body>

@@ -2,17 +2,18 @@
     <title>
         出勤情况
     </title>
+    <script src='./angular.min.js'></script>
 </head>
-
-        <table  id="bt"  width="100%" >
-                <tr>
-                    <td  align= "center"class="title" height="60"> 出勤情况</td>
-                </tr>
-                <tr>
-                    <td align="right" height="25">2017-01-02---2017-05-02</td>
-                </tr>
-            </table>
-       
+<body ng-app="App">
+    <table ng-controller="DemoCtrl" id="bt"  width="100%" >
+        <tr>
+           <td  align= "center"class="title" height="60"> 出勤情况</td>
+        </tr>
+        <tr>
+         <td align="right" height="25">{{now|date:'yyyy-MM-dd hh:mm:ss'}}</td>
+        </tr>
+    </table>
+    
     <table width=100%  class="hovertable">
         <tr>
             <th >姓名</th>
@@ -20,3 +21,16 @@
             <th>操作</th>
         </tr>
     </table>
+    <script>
+            var App = angular.module('App', []);
+            App.controller('DemoCtrl', ['$scope', '$timeout', '$interval', function ($scope, $timeout, $interval) {
+                $scope.now =new Date();
+                var timer = $interval(function () {
+                $scope.now = new Date();
+                }, 1000);
+
+            }])
+        
+    </script>
+</body>
+

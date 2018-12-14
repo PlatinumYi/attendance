@@ -4,7 +4,7 @@
       <div>
       </div>
     
-      <button type="button" class ="btn" id="lq" onmouseover="background='black'"
+      <button type="button" class ="btn" onclick="toDiv" onmouseover="background='black'"
       onmouseout="background= 111">
         请假单
       </button>
@@ -16,8 +16,23 @@
       </button>
      
     </div>
-    <div class="main-right" ></div>
-    <button type="button">
-      点击
-    </button>
+    <div class="main-right" >
+        <table  id="bt"  width="100%" >
+            <tr>
+               <td  align= "center"class="title" height="60">请假单</td>
+            </tr>
+            
+        </table>
+           
+        <table width=100%  class="hovertable">
+            <tr>
+              <th >请假类型</th>
+              <th>请假长度</th>
+              <th>请假理由</th>
+              <th>请假状态</th>
+            </tr>
+        </table>
+
+    </div>
+    
     </body>
