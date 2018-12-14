@@ -1,10 +1,20 @@
-<form [formGroup]="loginForm" (ngSubmit)="onSubmit()">
-  <label>用户名：</label>
-  <input type="text" formControlName="username">
-  <label>密码：</label>
-  <input type="password" formControlName="password">
-  <button type="submit">登录</button>
- {{message}}
-</form>
-<br>
-没有账号? <button type="button" routerLink="/register">注册</button>
+<head>
+  <meta charset="UTF-8">
+  <title>Login</title>
+</head>
+
+  <div id="login">
+    <h1>Login</h1>
+    <form [formGroup]="loginForm" (ngSubmit)="onSubmit()">
+      
+      <input type="text" placeholder= "用户名" formControlName="username">
+      
+      <input type="password" placeholder= "密码" formControlName="password">
+      <button class ="btn" type="submit">登录</button>
+      {{message}}
+    </form>
+    <br>
+       <span>
+      没有账号? <button class="btnz" type="button" routerLink="/register">注册</button>
+      </span>
+  </div>
