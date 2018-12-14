@@ -13,6 +13,7 @@ import { AppRoutingModule } from './/app-routing.module';
 import { RegisterComponent } from './register/register.component';
 
 import { LayoutComponent } from './layout/layout.component';
+import { UserLoginService } from './service/user-login.service';
 
 @NgModule({
   declarations: [
@@ -32,6 +33,7 @@ import { LayoutComponent } from './layout/layout.component';
   ],
   providers: [
     ApiService,
+    UserLoginService,
   ],
   bootstrap: [AppComponent]
 })
