@@ -37,17 +37,22 @@ class EmployeeController extends Controller
         $work_number = $request->input('work_number');
         $password = $request->input('password');
         $employee = Employee::checkPassword((string)$work_number,(string)$password);
+        session(['auth_'.$work_number => $employee ]); //将新的用户信息和token覆盖到旧信息上去
+
+        session()->save();
+
         if($employee){
-            return response()->json($this->jsonArray(0))->cookie('user',$employee,1440,'/');
+            return response()->json($this->jsonArray(0,'请求成功',['work_number'=>$work_number]));
         }else{
             return response()->json($this->jsonArray(3,'账号或密码错误'));
         }
 
     }
 
-    public function getCurrentUser(){
+    public function getCurrentUser(Request $request){
 
-        $user_id = request()->cookie('user');
+        $work_number = $request->header('work_number');
+        $user_id = $request->session()->get('auth_'.$work_number);
         $user = [ 'user'=>$user_id ];
         if(!$user_id){
             return response()->json($this->jsonArray(4,'无人登录'));

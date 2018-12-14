@@ -12,19 +12,12 @@ use Illuminate\Http\Request;
 class ApplyController extends Controller
 {
 
-     public static function checkUser(){
 
-         $user_id = request()->cookie('user');
-         if(!$user_id){
-             return false ;
-         }
-         else{
-             return $user_id ;
-         }
-     }
+
      public function createApply(Request $request){
 
-         $user_id = self::checkUser();
+         $work_number = $request->header('work_number');
+         $user_id = $request->session()->get('auth_'.$work_number);
          if(!$user_id){
              return response()->json($this->jsonArray(22,'获取登录状态失败'));
          }
@@ -43,9 +36,10 @@ class ApplyController extends Controller
 
      }
 
-     public function getSelfApply(){
+     public function getSelfApply(Request $request){
 
-         $user_id = self::checkUser();
+         $work_number = $request->header('work_number');
+         $user_id = $request->session()->get('auth_'.$work_number);
          if(!$user_id){
              return response()->json($this->jsonArray(22,'获取登录状态失败'));
          }
@@ -88,9 +82,10 @@ class ApplyController extends Controller
          return response()->json($this->jsonArray(0,'请求成功',$result));
      }
 
-     public function getApplyInPower(){
+     public function getApplyInPower(Request $request){
 
-         $user_id = self::checkUser();
+         $work_number = $request->header('work_number');
+         $user_id = $request->session()->get('auth_'.$work_number);
          if(!$user_id){
              return response()->json($this->jsonArray(22,'获取登录状态失败'));
          }
@@ -116,9 +111,10 @@ class ApplyController extends Controller
      }
 
 
-     public function agreeApply($apply_id){
+     public function agreeApply(Request $request,$apply_id){
 
-         $user_id = self::checkUser();
+         $work_number = $request->header('work_number');
+         $user_id = $request->session()->get('auth_'.$work_number);
          if(!$user_id){
              return response()->json($this->jsonArray(22,'获取登录状态失败'));
          }
@@ -135,12 +131,14 @@ class ApplyController extends Controller
          return response()->json($this->jsonArray(0));
      }
 
-    public function banApply($apply_id){
+    public function banApply(Request $request,$apply_id){
 
-        $user_id = self::checkUser();
+        $work_number = $request->header('work_number');
+        $user_id = $request->session()->get('auth_'.$work_number);
         if(!$user_id){
             return response()->json($this->jsonArray(22,'获取登录状态失败'));
         }
+
         $powers = Power::getUserPower($user_id);
         $apply = Apply::getOneApply($apply_id);
         foreach ( $powers as $power ){
