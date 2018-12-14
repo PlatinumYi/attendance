@@ -1,45 +1,37 @@
 import { Injectable } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
+import { Http } from '@angular/http';
 import { ApiService } from './api.service';
-import { User } from '../common/user'
-import { Observable } from 'rxjs';
-import { Http, Headers } from '@angular/http';
 import { ResponseData } from '../common/response-data';
-
 
 @Injectable({
   providedIn: 'root'
 })
-export class UserLoginService {
-
+export class UserRegisterService {
   private api_url ;
   private headers ;
 
   constructor(private http: Http, private apiService: ApiService) {
     this.headers = apiService.getHeaders();
-    this.api_url = apiService.getUrl() + '/api/login';
+    this.api_url = apiService.getUrl() + '/api/register';
   }
 
-  login(work_number:string, password:string) : Promise<ResponseData>{
-    console.log(work_number)
+  register(work_number: string,
+    password: string,
+    real_name: string,
+    gender: number,
+    part_id_selected: number) : Promise<ResponseData>{
     let user = {
-      "work_number":work_number,
-      "password":password
+      work_number: work_number,
+      password: password,
+      name: real_name,
+      gender: gender,
+      part: part_id_selected
     }
-    console.log(JSON.stringify(user))
-    // console.log('l '+ userInfo )
-    // const user = JSON.parse(userInfo)
-    // console.log('ll '+ user )
     const url = `${this.api_url}`;
     return this.http
       .post(url, JSON.stringify(user), {headers: this.headers})
       .toPromise()
       .then(res => res.json() as ResponseData)
-      // .then(res => {
-      //   console.log(res.json())
-      //   res.json() as responseData
-      //   console.log("qqq"+responseData)
-      // })
       .catch(this.handleError);
   }
 
@@ -47,5 +39,4 @@ export class UserLoginService {
     console.error('An error occurred', error);
     return Promise.reject(error.message || error);
   }
-
 }

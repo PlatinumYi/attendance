@@ -8,6 +8,7 @@ import { from } from 'rxjs';
 import { UserLoginService } from '../service/user-login.service'
 import { UserStatusService } from '../service/user-status.service';
 import { Router } from '@angular/router';
+import { ToastService } from '../service/toast.service';
 // import 'rxjs/add/operator/toPromise';
 
 @Component({
@@ -19,26 +20,25 @@ export class LoginComponent implements OnInit {
 
   private api_url ;
   private headers ;
-  message: String;
-  route: String;
+  message: string;
 
   user: User;
   work_number: string;
   password: string;
   loginForm = new FormGroup({
-    username: new FormControl(''),
+    work_number: new FormControl(''),
     password: new FormControl(''),
   })
 
-  constructor(private userService: UserLoginService, private userStatusService: UserStatusService, private router: Router) {
+  constructor(private userService: UserLoginService, private userStatusService: UserStatusService, private router: Router, private toastService: ToastService) {
   }
 
   onSubmit() {
     this.user = {
-      work_number: this.loginForm.value.username,
+      work_number: this.loginForm.value.work_number,
       password: this.loginForm.value.password
     }
-    this.work_number= this.loginForm.value.username,
+    this.work_number= this.loginForm.value.work_number,
     this.password=this.loginForm.value.password
     // localStorage.setItem('user', this.user);
     if(this.user.work_number.length == 0 || this.user.password.length == 0){
@@ -57,7 +57,7 @@ export class LoginComponent implements OnInit {
         else if(result['error_code']  == 0){
           this.message = result['message']
           this.router.navigate(['/layout'])
-          this.showToast("登陆成功", 3000)
+          this.toastService.showToast("登陆成功", 1500)
         }
         return result;
       })
@@ -80,26 +80,12 @@ export class LoginComponent implements OnInit {
     //   })
     //   .catch(this.handleError);
 
-  }
-
-  showToast(msg,duration){  
-    duration=isNaN(duration)?3000:duration;  
-    var m = document.createElement('div');  
-    m.innerHTML = msg;  
-    m.style.cssText="width:60%; min-width:180px; background:#000; opacity:0.6; height:auto;min-height: 30px; color:#fff; line-height:30px; text-align:center; border-radius:4px; position:fixed; top:60%; left:20%; z-index:999999;";  
-    document.body.appendChild(m);  
-    setTimeout(function() {  
-        var d = 0.5;  
-        m.style.webkitTransition = '-webkit-transform ' + d + 's ease-in, opacity ' + d + 's ease-in';  
-        m.style.opacity = '0';  
-        setTimeout(function() { document.body.removeChild(m) }, d * 1000);  
-    }, duration);  
-}  
+  } 
 
   private handleError(error: any): Promise<any> {
     console.error('An error occurred', error); 
     return Promise.reject(error.message || error);
-}
+  }
 
   ngOnInit() {
     this.userStatusService.getUserStatus()
