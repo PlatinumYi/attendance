@@ -1,10 +1,10 @@
 
   <label>用户名：</label>
-  <input type="text"  [(ngModel)]="user.work_number">
+  <input type="text" formControlName="username" >
   <label>密码：</label>
-  <input type="password"  [(ngModel)]="user.password">
-  <button type="submit" routerLink="{{route}}" (click)="onSubmit()">登录</button>
- {{message}}
-
+  <input type="password" formControlName="password">
+  <button type="submit" >登录</button>
+ {{message}}{{route}}
+</form>
 <br>
 没有账号? <button type="button" routerLink="/register">注册</button>
