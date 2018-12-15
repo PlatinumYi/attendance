@@ -11,9 +11,16 @@ use Illuminate\Http\Request;
 
 class ApplyController extends Controller
 {
+
+
+
      public function createApply(Request $request){
 
-         $user_id = request()->cookie('user');//测试 之后换成session取值
+         $work_number = $request->header('work_number');
+         $user_id = $request->session()->get('auth_'.$work_number);
+         if(!$user_id){
+             return response()->json($this->jsonArray(22,'获取登录状态失败'));
+         }
          $part = Employee::getOneEmployee($user_id)->part ; //测试 之后换成session取值
          $reason = $request->input('reason');
          $length = $request->input('length');
@@ -29,9 +36,13 @@ class ApplyController extends Controller
 
      }
 
-     public function getSelfApply(){
+     public function getSelfApply(Request $request){
 
-         $user_id = request()->cookie('user');//测试 之后换成session取值
+         $work_number = $request->header('work_number');
+         $user_id = $request->session()->get('auth_'.$work_number);
+         if(!$user_id){
+             return response()->json($this->jsonArray(22,'获取登录状态失败'));
+         }
          $applys = Apply::getUserApply($user_id);
          $result = [] ;
          foreach ($applys as $apply){
@@ -71,14 +82,19 @@ class ApplyController extends Controller
          return response()->json($this->jsonArray(0,'请求成功',$result));
      }
 
-     public function getApplyInPower(){
+     public function getApplyInPower(Request $request){
 
-         $user_id = request()->cookie('user');
+         $work_number = $request->header('work_number');
+         $user_id = $request->session()->get('auth_'.$work_number);
+         if(!$user_id){
+             return response()->json($this->jsonArray(22,'获取登录状态失败'));
+         }
          $power = Power::getUserPower($user_id);
          $applys = Apply::getApplyByPower($power);
          $result = [];
              foreach ($applys as $apply) {
                  $result[] = [
+                     'id' => $apply->id,
                      'employee' => Employee::getOneEmployee($apply->user_id)->name ,
                      'part' => Part::getPartName($apply->part),
                      'type' => Vocation::getVocationName($apply->type),
@@ -95,9 +111,13 @@ class ApplyController extends Controller
      }
 
 
-     public function agreeApply($apply_id){
+     public function agreeApply(Request $request,$apply_id){
 
-         $user_id = request()->cookie('user');
+         $work_number = $request->header('work_number');
+         $user_id = $request->session()->get('auth_'.$work_number);
+         if(!$user_id){
+             return response()->json($this->jsonArray(22,'获取登录状态失败'));
+         }
          $powers = Power::getUserPower($user_id);
          $apply = Apply::getOneApply($apply_id);
          foreach ( $powers as $power ){
@@ -111,9 +131,14 @@ class ApplyController extends Controller
          return response()->json($this->jsonArray(0));
      }
 
-    public function banApply($apply_id){
+    public function banApply(Request $request,$apply_id){
 
-        $user_id = request()->cookie('user');
+        $work_number = $request->header('work_number');
+        $user_id = $request->session()->get('auth_'.$work_number);
+        if(!$user_id){
+            return response()->json($this->jsonArray(22,'获取登录状态失败'));
+        }
+
         $powers = Power::getUserPower($user_id);
         $apply = Apply::getOneApply($apply_id);
         foreach ( $powers as $power ){
