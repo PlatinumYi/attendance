@@ -16,8 +16,13 @@ class ApplyController extends Controller
 
      public function createApply(Request $request){
 
+<<<<<<< HEAD
          $work_number = $request->header('work_number');
          $user_id = Employee::getIdByWorkNumber($work_number);
+=======
+         $work_number = $request->input('work_number');
+         $user_id = $request->session()->get('auth_'.$work_number);
+>>>>>>> 91c10a1d4af348314fbf720a564b0319a2ea0877
          if(!$user_id){
              return response()->json($this->jsonArray(22,'获取登录状态失败'));
          }
@@ -38,8 +43,13 @@ class ApplyController extends Controller
 
      public function getSelfApply(Request $request){
 
+<<<<<<< HEAD
          $work_number = $request->header('work_number');
          $user_id = Employee::getIdByWorkNumber($work_number);
+=======
+         $work_number = $request->input('work_number');
+         $user_id = $request->session()->get('auth_'.$work_number);
+>>>>>>> 91c10a1d4af348314fbf720a564b0319a2ea0877
          if(!$user_id){
              return response()->json($this->jsonArray(22,'获取登录状态失败'));
          }
@@ -84,8 +94,13 @@ class ApplyController extends Controller
 
      public function getApplyInPower(Request $request){
 
+<<<<<<< HEAD
          $work_number = $request->header('work_number');
          $user_id = Employee::getIdByWorkNumber($work_number);
+=======
+         $work_number = $request->input('work_number');
+         $user_id = $request->session()->get('auth_'.$work_number);
+>>>>>>> 91c10a1d4af348314fbf720a564b0319a2ea0877
          if(!$user_id){
              return response()->json($this->jsonArray(22,'获取登录状态失败'));
          }
@@ -113,8 +128,13 @@ class ApplyController extends Controller
 
      public function agreeApply(Request $request,$apply_id){
 
+<<<<<<< HEAD
          $work_number = $request->header('work_number');
          $user_id = Employee::getIdByWorkNumber($work_number);
+=======
+         $work_number = $request->input('work_number');
+         $user_id = $request->session()->get('auth_'.$work_number);
+>>>>>>> 91c10a1d4af348314fbf720a564b0319a2ea0877
          if(!$user_id){
              return response()->json($this->jsonArray(22,'获取登录状态失败'));
          }
@@ -133,8 +153,13 @@ class ApplyController extends Controller
 
     public function banApply(Request $request,$apply_id){
 
+<<<<<<< HEAD
         $work_number = $request->header('work_number');
         $user_id = Employee::getIdByWorkNumber($work_number);
+=======
+        $work_number = $request->input('work_number');
+        $user_id = $request->session()->get('auth_'.$work_number);
+>>>>>>> 91c10a1d4af348314fbf720a564b0319a2ea0877
         if(!$user_id){
             return response()->json($this->jsonArray(22,'获取登录状态失败'));
         }
