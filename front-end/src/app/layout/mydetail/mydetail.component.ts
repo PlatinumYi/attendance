@@ -8,11 +8,16 @@ import { LQueries_ } from '@angular/core/src/render3/query';
 })
 
 export class MydetailComponent implements OnInit {
-  
+  paperOrTime: boolean;
   constructor() { }
 
   ngOnInit() {
-    
+    this.paperOrTime=false;
   }
-
+  showPaper(){
+     this.paperOrTime=false;
+  }
+  showTime(){
+    this.paperOrTime=true;
+  }
 }

@@ -4,19 +4,19 @@
       <div>
       </div>
     
-      <button type="button" class ="btn" onclick="toDiv" onmouseover="background='black'"
-      onmouseout="background= 111">
+      <button type="button" class ="btn"  onmouseover="background='black'"
+      onmouseout="background= 111" (click)="showPaper()">
         请假单
       </button>
       <div>
     
         </div>
-      <button type="button" class ="btn" id="ll">
+      <button type="button" class ="btn" id="ll" (click)="showTime()">
           剩余假期
       </button>
      
     </div>
-    <div class="main-right" >
+    <div class="main-right" *ngIf="!paperOrTime">
         <table  id="bt"  width="100%" >
             <tr>
                <td  align= "center"class="title" height="60">请假单</td>
@@ -35,4 +35,23 @@
 
     </div>
     
+    <div class="main-right" *ngIf="paperOrTime">
+        <table  id="bt"  width="100%" >
+            <tr>
+               <td  align= "center"class="title" height="60">假期剩余</td>
+            </tr>
+            
+        </table>
+           
+        <table width=100%  class="hovertable">
+            <tr>
+              <th >请假类型</th>
+              <th>请假长度</th>
+              <th>请假理由</th>
+              <th>请假状态</th>
+            </tr>
+        </table>
+
+    </div>
+
     </body>

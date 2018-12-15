@@ -9,25 +9,24 @@
     <table class="t">
         <tr>
             <td>请假理由：</td>
-            <td><input class="input" type="text" [(ngModel)]="reason" /></td>
+            <td><input class="input" type="text" name="applyrason" [(ngModel)]="abs.reason"/></td>
         </tr>
         <tr>
             <td>请假长度：</td>
-            <td><input class="input" type="text" [(ngModel)]="length"/></td>
+            <td><input class="input" type="number" name="applyname"  [(ngModel)]="abs.length" placeholder="请输入数字"/></td>
         </tr>
         <tr>
             <td>开始时间：</td>
-            <td><input class="input" type="date" [(ngModel)]="start_time"/></td>
+            <td><input class="input" type="date" name="applydate" [(ngModel)]="abs.start_time"/></td>
         </tr>
-        <!-- <tr>
+        <tr>
             <td>请假类型：</td>
-            <td><input class="input" type="text" name="applytype"/></td>
-        </tr> -->
+            <td><input class="input" type="text" name="applytype" [(ngModel)]="abs.type" disabled="true"/></td>
+        </tr>
        
     </table> 
-     <input type="submit" value="提交" (click)="onSubmit()" style="background-color:#3762bc"/>
-
-     <!-- <input  type="button" value="返回" style="background-color:red"/> -->
+     <input  type="button" value="提交" (click)="onSubmit()" style="background-color:#3762bc"/>
+     <input  type="button" value="返回" (click)="back()" style="background-color:red"/>
     </form>
     
     

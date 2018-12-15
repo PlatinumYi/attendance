@@ -8,11 +8,12 @@ import { HeaderComponent } from './header/header.component';
 import { AddComponent } from './add/add.component';
 import { MydetailComponent } from './mydetail/mydetail.component';
 import { JudgeComponent } from './judge/judge.component';
-
+import { FormsModule } from '@angular/forms';
 @NgModule({
   imports: [
     CommonModule,
-    LayoutRoutingModule
+    LayoutRoutingModule,
+    FormsModule
   ],
   declarations: [
     LayoutComponent,

@@ -8,7 +8,7 @@ export class ApiService {
     getHeaders(): Headers {
         let headers = new Headers();
         headers.set('Content-Type', 'application/x-www-form-urlencoded; application/json')
-        // headers.set('Access-Control-Allow-Origin', '*'),
+        // headers.set('Access-Control-Allow-Origin', '*')
         // headers.set('Accept', 'application/json')
         // headers.set('Authorization', 'application/x-www-form-urlencoded')
         return headers;
