@@ -30,6 +30,7 @@ export class UserLoginService {
     // console.log('l '+ userInfo )
     // const user = JSON.parse(userInfo)
     // console.log('ll '+ user )
+    window.localStorage.removeItem("work_number")
     const url = `${this.api_url}`;
     return this.http
       .post(url, JSON.stringify(user), {headers: this.headers})

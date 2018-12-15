@@ -12,8 +12,9 @@ export class ApplyService {
   private api_url ;
   private headers ;
 
-  constructor(private http: Http, private apiService: ApiService) { 
-    this.headers = apiService.getHeaders();
+  constructor(private http: Http, private apiService: ApiService) {
+    this.headers = apiService.getHeaders(window.localStorage.getItem("work_number"));
+    // this.headers = apiService.getHeaders();
     this.api_url = apiService.getUrl() + '/api';
   }
 
@@ -32,10 +33,15 @@ export class ApplyService {
   addApply(abs: string): Promise<ResponseData> {
     console.log('fun '+ abs)
     const url = `${this.api_url}/apply`
+    // console.log("head"+this.headers['Content-type'])
     return this.http
       .post(url, abs, {headers: this.headers})
       .toPromise()
       .then(res => res.json() as ResponseData)
+      // .then(res => {
+      //   var test = res.json()
+      //   console.log( 'res '+test['error_code'])
+      // })
       .catch(this.handleError)
   }
 
