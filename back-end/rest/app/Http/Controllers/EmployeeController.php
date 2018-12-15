@@ -42,7 +42,7 @@ class EmployeeController extends Controller
         session()->save();
 
         if($employee){
-            return response()->json($this->jsonArray(0,'请求成功',['work_number'=>$work_number]));
+            return response()->json($this->jsonArray(0,'请求成功',[['work_number'=>$work_number]]));
         }else{
             return response()->json($this->jsonArray(3,'账号或密码错误'));
         }
