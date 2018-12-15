@@ -16,9 +16,11 @@ class ApplyController extends Controller
 
      public function createApply(Request $request){
 
+
+
          $work_number = $request->header('work_number');
-         $user_id = $request->session()->get('auth_'.$work_number);
-         var_dump($work_number.'+'.$user_id);
+         $user_id = Employee::getIdByWorkNumber($work_number);
+
          if(!$user_id){
              return response()->json($this->jsonArray(22,'获取登录状态失败'));
          }
@@ -39,8 +41,10 @@ class ApplyController extends Controller
 
      public function getSelfApply(Request $request){
 
-         $work_number = $request->input('work_number');
-         $user_id = $request->session()->get('auth_'.$work_number);
+
+         $work_number = $request->header('work_number');
+         $user_id = Employee::getIdByWorkNumber($work_number);
+
          if(!$user_id){
              return response()->json($this->jsonArray(22,'获取登录状态失败'));
          }
@@ -85,8 +89,10 @@ class ApplyController extends Controller
 
      public function getApplyInPower(Request $request){
 
-         $work_number = $request->input('work_number');
-         $user_id = $request->session()->get('auth_'.$work_number);
+
+         $work_number = $request->header('work_number');
+         $user_id = Employee::getIdByWorkNumber($work_number);
+
          if(!$user_id){
              return response()->json($this->jsonArray(22,'获取登录状态失败'));
          }
@@ -114,8 +120,10 @@ class ApplyController extends Controller
 
      public function agreeApply(Request $request,$apply_id){
 
-         $work_number = $request->input('work_number');
-         $user_id = $request->session()->get('auth_'.$work_number);
+
+         $work_number = $request->header('work_number');
+         $user_id = Employee::getIdByWorkNumber($work_number);
+
          if(!$user_id){
              return response()->json($this->jsonArray(22,'获取登录状态失败'));
          }
@@ -134,8 +142,10 @@ class ApplyController extends Controller
 
     public function banApply(Request $request,$apply_id){
 
-        $work_number = $request->input('work_number');
-        $user_id = $request->session()->get('auth_'.$work_number);
+
+        $work_number = $request->header('work_number');
+        $user_id = Employee::getIdByWorkNumber($work_number);
+
         if(!$user_id){
             return response()->json($this->jsonArray(22,'获取登录状态失败'));
         }
