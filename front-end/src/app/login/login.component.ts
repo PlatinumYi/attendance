@@ -58,6 +58,10 @@ export class LoginComponent implements OnInit {
           this.message = result['message']
         }
         else if(result['error_code']  == 0){
+          console.log("sto ",  result['data'][0]['work_number'])
+          window.localStorage.setItem("work_number", result['data'][0]['work_number'])
+          // let workk = window.localStorage.getItem("work_number")
+          // console.log('woo' + workk)
           this.message = result['message']
           this.router.navigate(['/layout'])
           this.toastService.showToast("登陆成功", 1500)
