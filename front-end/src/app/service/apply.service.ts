@@ -1,7 +1,7 @@
 import { ResponseData } from './../common/response-data';
 import { Absence } from './../domain/absence';
 import { Injectable } from '@angular/core';
-import { Http } from '@angular/http';
+import { Http, Jsonp } from '@angular/http';
 import { ApiService } from './api.service';
 import { Apply } from '../domain/apply';
 
@@ -90,9 +90,11 @@ export class ApplyService {
    * @param id 
    */
   agreeApply(id: number): Promise<ResponseData> {
-    const url = `${this.api_url}/agree/${id}`
+    const url = `${this.api_url}/apply/agree/${id}`
+    let data = {
+    }
     return this.http
-      .post(url, {headers: this.headers})
+      .post(url, JSON.stringify(data),{headers: this.headers})
       .toPromise()
       .then(res => res.json() as ResponseData)
       .catch(this.handleError)
@@ -103,9 +105,11 @@ export class ApplyService {
    * @param id 
    */
   banApply(id: number):Promise<ResponseData>{
-    const url = `${this.api_url}/ban/${id}`
+    const url = `${this.api_url}/apply/ban/${id}`
+    let data = {
+    }
     return this.http
-      .post(url, {headers: this.headers})
+      .post(url, JSON.stringify(data),{headers: this.headers})
       .toPromise()
       .then(res => res.json() as ResponseData)
       .catch(this.handleError)

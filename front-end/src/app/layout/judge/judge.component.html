@@ -1,3 +1,26 @@
-<p>
-  judge works!
-</p>
+<div class=heading>
+  假条审批
+</div>
+<div class="card-body table-responsive">
+  <table class="table">
+      <thead>
+          <th>姓名</th>
+          <th>请假原因</th>
+          <th>请假时间</th>
+          <th>请假时长</th>
+          <th>操作</th>
+      </thead>
+      <tbody>
+          <tr *ngFor="let da of data" (click)="onSelect(da)" [class.selectd]="da === selectedData">
+              <th>{{da.employee}}</th>
+              <td>{{da.reason}}</td>
+              <td>{{da.start_time}}</td>
+              <td>{{da.length}}</td>
+              <td>
+                  <button type="button" class="btn btn-primary" (click)="agreed(da)">同意</button>
+                  <button type="button" class="btn btn-danger" (click)="ban(da)">拒绝</button>
+              </td>
+          </tr>
+      </tbody>
+  </table>
+</div>
