@@ -13,13 +13,19 @@
          <td align="right" height="25">{{now|date:'yyyy-MM-dd hh:mm:ss'}}</td>
         </tr>
     </table>
-    
     <table width=100%  class="hovertable">
         <tr>
             <th >姓名</th>
             <th>出勤情况</th>
             <th>操作</th>
         </tr>
+          <!-- da是返回的当天请假的信息，具体内容看domain里的data.ts,使用里面的变量可以像下面{{da.变量}} *ngFor是便利dat数组，因为有多条信息-->
+        <div *ngIf="dat">
+            <div *ngFor="let da of dat">
+               <th>{{da.employee}}</th>
+            </div>
+        </div>
+
     </table>
     <script>
             var App = angular.module('App', []);

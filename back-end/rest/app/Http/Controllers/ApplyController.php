@@ -17,6 +17,7 @@ class ApplyController extends Controller
      public function createApply(Request $request){
 
 
+
          $work_number = $request->header('work_number');
          $user_id = Employee::getIdByWorkNumber($work_number);
 
