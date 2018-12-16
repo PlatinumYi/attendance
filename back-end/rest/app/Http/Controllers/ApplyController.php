@@ -53,6 +53,7 @@ class ApplyController extends Controller
              $result[] = [
                'part' => Part::getPartName($apply->part),
                'type' => Vocation::getVocationName($apply->type),
+               'start_time' => $apply->start_time,
                'length' => $apply->length,
                'reason' => $apply->reason,
                'part_agree' => $apply->part_agree,
@@ -74,6 +75,7 @@ class ApplyController extends Controller
                  'employee' => Employee::getOneEmployee($apply->user_id)->name ,
                  'part' => Part::getPartName($apply->part),
                  'type' => Vocation::getVocationName($apply->type),
+                 'start_time' => $apply->start_time,
                  'length' => $apply->length,
                  'reason' => $apply->reason,
                  'part_agree' => $apply->part_agree,
@@ -104,6 +106,7 @@ class ApplyController extends Controller
                      'employee' => Employee::getOneEmployee($apply->user_id)->name ,
                      'part' => Part::getPartName($apply->part),
                      'type' => Vocation::getVocationName($apply->type),
+                     'start_time' => $apply->start_time,
                      'length' => $apply->length,
                      'reason' => $apply->reason,
                      'part_agree' => $apply->part_agree,
