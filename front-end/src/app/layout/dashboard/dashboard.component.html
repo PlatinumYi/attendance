@@ -1,42 +1,21 @@
-<head>
-    <title>
-        出勤情况
-    </title>
-    <script src='./angular.min.js'></script>
-</head>
-<body ng-app="App">
-    <table ng-controller="DemoCtrl" id="bt"  width="100%" >
-        <tr>
-           <td  align= "center"class="title" height="60"> 出勤情况</td>
-        </tr>
-        <tr>
-         <td align="right" height="25">{{now|date:'yyyy-MM-dd hh:mm:ss'}}</td>
-        </tr>
+<div class=heading>
+    出勤情况
+  </div>
+  <div class="card-body table-responsive">
+    <table class="table">
+        <thead>
+            <th>姓名</th>
+            <th>请假原因</th>
+            <th>请假时间</th>
+            <th>请假时长</th>
+        </thead>
+        <tbody>
+            <tr *ngFor="let da of dat" (click)="onSelect(da)" [class.selectd]="da === selectedData">
+                <th>{{da.employee}}</th>
+                <td>{{da.reason}}</td>
+                <td>{{da.start_time}}</td>
+                <td>{{da.length}}天</td>
+            </tr>
+        </tbody>
     </table>
-    <table width=100%  class="hovertable">
-        <tr>
-            <th >姓名</th>
-            <th>出勤情况</th>
-            <th>操作</th>
-        </tr>
-          <!-- da是返回的当天请假的信息，具体内容看domain里的data.ts,使用里面的变量可以像下面{{da.变量}} *ngFor是便利dat数组，因为有多条信息-->
-        <div *ngIf="dat">
-            <div *ngFor="let da of dat">
-               <th>{{da.employee}}</th>
-            </div>
-        </div>
-
-    </table>
-    <script>
-            var App = angular.module('App', []);
-            App.controller('DemoCtrl', ['$scope', '$timeout', '$interval', function ($scope, $timeout, $interval) {
-                $scope.now =new Date();
-                var timer = $interval(function () {
-                $scope.now = new Date();
-                }, 1000);
-
-            }])
-        
-    </script>
-</body>
-
+  </div>

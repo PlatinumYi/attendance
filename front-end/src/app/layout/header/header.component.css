@@ -18,10 +18,25 @@ li a, .mydropbtn {
     text-decoration: none;
 }
 
-li a:hover, .mydropdown:hover, .mydropbtn {
+li label {
+    display: inline-block;
+    color: white;
+    text-align: center;
+    padding: 14px 14px;
+    text-decoration: none;
+}
+
+#but:hover, .mydropdown:hover, .mydropbtn {
     background-color: #111;
 }
 
+#work{
+    float: right;
+}
+#work a:hover{
+    color: #f1f1f1;
+    -webkit-tap-highlight-color:rgba(0,0,0,0);
+}
 .mydropdown {
     display: inline-block;
 }

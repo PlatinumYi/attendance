@@ -7,10 +7,11 @@ import {Location} from '@angular/common'
   styleUrls: ['./header.component.css']
 })
 export class HeaderComponent implements OnInit {
-
+  workNumber:string;
   constructor(private router: Router,private location: Location) { }
 
   ngOnInit() {
+    this.workNumber=window.localStorage.getItem("work_number");
   }
 
  logout()
