@@ -21,7 +21,6 @@
             <tr>
                <td  align= "center"class="title" height="60">请假单</td>
             </tr>
-            
         </table>
            
         <table width=100%  class="hovertable">
@@ -32,9 +31,24 @@
               <th>请假状态</th>
             </tr>
         </table>
+           <!-- da是返回的当天请假的信息，具体内容看domain里的data.ts,使用里面的变量可以像下面{{da.变量}} *ngFor是便利dat数组，因为有多条信息-->
+            <div *ngIf="dat" >
+                <table width=100% *ngFor="let da of dat" class="hovertable">
+                   <tr>
+                    <th>
+                    {{da.type}}
+                    </th>
+                    <th>
+                        {{da.length}}
+                    </th>
+                </tr>
+                </table>
+            </div>
+       
 
     </div>
     
+    <!-- 假期剩余暂没实现 -->
     <div class="main-right" *ngIf="paperOrTime">
         <table  id="bt"  width="100%" >
             <tr>

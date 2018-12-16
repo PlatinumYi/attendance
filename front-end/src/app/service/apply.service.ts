@@ -3,6 +3,7 @@ import { Absence } from './../domain/absence';
 import { Injectable } from '@angular/core';
 import { Http } from '@angular/http';
 import { ApiService } from './api.service';
+import { Apply } from '../domain/apply';
 
 @Injectable({
   providedIn: 'root'
@@ -51,12 +52,12 @@ export class ApplyService {
   /**
    * 这里的是已经通过，且请假时间包含当前时间的申请列表
    */
-  getCurrentApply(): Promise<ResponseData> {
+  getCurrentApply(): Promise<Apply> {
     const url = `${this.api_url}/apply/current`
     return this.http
       .get(url, {headers: this.headers})
       .toPromise()
-      .then(res => res.json() as ResponseData)
+      .then(res => res.json() as Apply)
       .catch(this.handleError)
   }
 
@@ -75,12 +76,12 @@ export class ApplyService {
   /**
    * 获取自己曾提交过的所有请假单
    */
-  getSelfApply(): Promise<ResponseData> {
+  getSelfApply(): Promise<Apply> {
     const url = `${this.api_url}/apply/self`
     return this.http
       .get(url, {headers: this.headers})
       .toPromise()
-      .then(res => res.json() as ResponseData)
+      .then(res => res.json() as Apply)
       .catch(this.handleError)
   }
 
