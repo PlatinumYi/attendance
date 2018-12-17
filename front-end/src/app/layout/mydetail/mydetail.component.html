@@ -4,35 +4,66 @@
       <div>
       </div>
     
-      <button type="button" class ="btn" onclick="toDiv" onmouseover="background='black'"
-      onmouseout="background= 111">
+      <button type="button" class ="btn"  onmouseover="background='black'"
+      onmouseout="background= 111" (click)="showPaper()">
         请假单
       </button>
       <div>
     
         </div>
-      <button type="button" class ="btn" id="ll">
+      <button type="button" class ="btn" id="ll" (click)="showTime()">
           剩余假期
       </button>
      
     </div>
-    <div class="main-right" >
-        <table  id="bt"  width="100%" >
-            <tr>
-               <td  align= "center"class="title" height="60">请假单</td>
-            </tr>
-            
+<div class="main-right" *ngIf="!paperOrTime">
+    <div class=heading>
+        请假单
+      </div>
+      <div class="card-body table-responsive" >
+        <table class="table">
+            <thead>
+                <th>请假原因</th>
+                <th>请假时间</th>
+                <th>请假时长</th>
+                <th>审批结果</th>
+            </thead>
+            <tbody>
+                <tr *ngFor="let da of dat">
+                    <td>{{da.reason}}</td>
+                    <td>{{da.start_time}}</td>
+                    <td>{{da.length}}天</td>
+                    <td *ngIf="da.pass===1">已通过</td>
+                    <td *ngIf="da.ban!=0">被拒绝</td>
+                    <td *ngIf="da.pass===0&&da.ban===0">未审批</td>
+                </tr>
+            </tbody>
         </table>
-           
-        <table width=100%  class="hovertable">
-            <tr>
-              <th >请假类型</th>
-              <th>请假长度</th>
-              <th>请假理由</th>
-              <th>请假状态</th>
-            </tr>
-        </table>
-
+      </div>
     </div>
-    
+    <!-- 假期剩余暂没实现 -->
+    <div class="main-right" *ngIf="paperOrTime">
+    <div class=heading>
+        假期剩余
+      </div>
+      <div class="card-body table-responsive" >
+        <table class="table">
+            <thead>
+                <th>姓名</th>
+                <th>请假原因</th>
+                <th>请假时间</th>
+                <th>请假时长</th>
+            </thead>
+            <tbody>
+                <tr *ngFor="let da of dat">
+                    <th>{{da.employee}}</th>
+                    <td>{{da.reason}}</td>
+                    <td>{{da.start_time}}</td>
+                    <td>{{da.length}}天</td>
+                </tr>
+            </tbody>
+        </table>
+      </div>
+    </div>
+
     </body>

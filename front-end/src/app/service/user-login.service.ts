@@ -4,7 +4,7 @@ import { ApiService } from './api.service';
 import { User } from '../common/user'
 import { Observable } from 'rxjs';
 import { Http, Headers } from '@angular/http';
-import { responseData } from '../common/response-data';
+import { ResponseData } from '../common/response-data';
 
 
 @Injectable({
@@ -20,7 +20,7 @@ export class UserLoginService {
     this.api_url = apiService.getUrl() + '/api/login';
   }
 
-  login(work_number:string, password:string) : Promise<responseData>{
+  login(work_number:string, password:string) : Promise<ResponseData>{
     console.log(work_number)
     let user = {
       "work_number":work_number,
@@ -30,11 +30,12 @@ export class UserLoginService {
     // console.log('l '+ userInfo )
     // const user = JSON.parse(userInfo)
     // console.log('ll '+ user )
+    window.localStorage.removeItem("work_number")
     const url = `${this.api_url}`;
     return this.http
       .post(url, JSON.stringify(user), {headers: this.headers})
       .toPromise()
-      .then(res => res.json() as responseData)
+      .then(res => res.json() as ResponseData)
       // .then(res => {
       //   console.log(res.json())
       //   res.json() as responseData

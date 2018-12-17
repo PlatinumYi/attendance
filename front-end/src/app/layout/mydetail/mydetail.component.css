@@ -45,3 +45,9 @@ table.hovertable td {
 	border-style: solid;
 	border-color: #a9c6c9;
 }
+.heading {
+    text-align: center;
+    line-height: 1.5;
+    font-family: 'FZXBS';
+    font-size: 21pt;
+}

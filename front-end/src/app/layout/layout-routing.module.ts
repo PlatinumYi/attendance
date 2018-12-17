@@ -6,6 +6,7 @@ import { Routes,RouterModule } from '@angular/router';
 import { DashboardComponent } from './dashboard/dashboard.component';
 import { MydetailComponent } from './mydetail/mydetail.component';
 import { AddComponent } from './add/add.component';
+import { JudgeComponent } from './judge/judge.component';
 const routes: Routes=[
   {
      path: '', component: LayoutComponent,
@@ -14,6 +15,7 @@ const routes: Routes=[
        {path:'dashboard', component: DashboardComponent},
        {path: 'mydetail', component: MydetailComponent },
        {path: 'add', component: AddComponent},
+       {path: 'judge', component: JudgeComponent},
      ]
   }
 ];

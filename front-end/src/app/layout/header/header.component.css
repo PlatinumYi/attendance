@@ -18,10 +18,25 @@ li a, .mydropbtn {
     text-decoration: none;
 }
 
-li a:hover, .mydropdown:hover, .mydropbtn {
+li label {
+    display: inline-block;
+    color: white;
+    text-align: center;
+    padding: 14px 14px;
+    text-decoration: none;
+}
+
+#but:hover, .mydropdown:hover, .mydropbtn {
     background-color: #111;
 }
 
+#work{
+    float: right;
+}
+#work a:hover{
+    color: #f1f1f1;
+    -webkit-tap-highlight-color:rgba(0,0,0,0);
+}
 .mydropdown {
     display: inline-block;
 }
@@ -32,6 +47,7 @@ li a:hover, .mydropdown:hover, .mydropbtn {
     background-color: #f9f9f9;
     min-width: 160px;
     box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+    z-index: 1;
 }
 
 .mydropdown-content a {

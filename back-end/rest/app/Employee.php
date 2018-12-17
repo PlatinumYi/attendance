@@ -27,6 +27,16 @@ class Employee extends Model
         return $employee->id ;
     }
 
+    public static function getIdByWorkNumber($work_number){
+
+        $employee = self::where('work_number',$work_number)->get()->first() ;
+        if( !$employee ){
+            return false ;
+        }else{
+            return $employee->id;
+        }
+    }
+
     public static function getOneEmployee($id){
 
         $employee = self::where('id',$id)->get()->first() ;

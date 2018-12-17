@@ -1,14 +1,14 @@
-<<<<<<< HEAD
+
 <head>
     <meta charset="UTF-8">
-    <title>Login</title>
+    <title>登录</title>
 </head>
 <body>
   <div id = "login">
-    <h1>登陆</h1>
+    <h1>登录</h1>
     <form class="login" [formGroup]="loginForm" (ngSubmit)="onSubmit()">
   
-      <input type="text" formControlName="username" placeholder="用户名">
+      <input type="text" formControlName="work_number" placeholder="工号">
       <input type="password" formControlName="password" placeholder="密码">
       <button type="submit" class="btn">登录</button>
       {{message}}{{route}}
@@ -17,15 +17,4 @@
     没有账号? <button type="button" class="btnz" routerLink="/register">注册</button>
   </div>
 </body>
-=======
 
-  <label>用户名：</label>
-  <input type="text" formControlName="username" >
-  <label>密码：</label>
-  <input type="password" formControlName="password">
-  <button type="submit" >登录</button>
- {{message}}{{route}}
-</form>
-<br>
-没有账号? <button type="button" routerLink="/register">注册</button>
->>>>>>> 737734bb22e84960d843785d4343866ce5e926ac
