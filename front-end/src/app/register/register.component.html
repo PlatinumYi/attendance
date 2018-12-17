@@ -1,24 +1,27 @@
+<body>
+<div id = "register">
+    <h1>注册</h1>
 <form [formGroup]="registerForm" (ngSubmit)="onSubmit()">
-  <label>工号：</label>
-  <input type="text" formControlName="work_number" >
-  <label>密码：</label>
-  <input type="password" formControlName="password">
-  <label>确认密码：</label>
-  <input type="password" formControlName="password_confirm">
-  <label>姓名：</label>
-  <input type="text" formControlName="real_name">
+  <input class="txt" type="text" formControlName="work_number" placeholder="工号" >
+  <input class="txt"  type="password" formControlName="password" placeholder="密码">
+  <input class="txt"  type="password" formControlName="password_confirm" placeholder="确认密码">
+  <input class="txt"  type="text" formControlName="real_name" placeholder="姓名">
   <label>性别：</label>
-  <input type="radio" formControlName="gender" value="1">男
-  <input type="radio" formControlName="gender" value="0">女
+  
+  <input type="radio" class="radio-group" formControlName="gender" value="1">男
+  <input type="radio" class="radio-group" formControlName="gender" value="0">女
   <br>
   <label>部门：</label>
-  <input type="radio" formControlName="part_id_selected" value="0">公司最高管理层
-  <input type="radio" formControlName="part_id_selected" value="1">卫生清洁部门
-  <input type="radio" formControlName="part_id_selected" value="2">仓库管理部门
-  <button type="submit" >注册</button>
+  <input type="radio" class="radio-group" formControlName="part_id_selected" value="0">公司最高管理层
+  <input type="radio" class="radio-group" formControlName="part_id_selected" value="1">卫生清洁部门
+  <input type="radio" class="radio-group" formControlName="part_id_selected" value="2">仓库管理部门
+  <button type="submit" id = "btn" >注册</button>
  {{message}}{{route}}
 </form>
 <br>
+
 <div class="footHidden" id="foot">
   注册成功！<button type="button" routerLink="/login">点此登录</button>
 </div>
+</div>
+</body>

@@ -1,14 +1,13 @@
-
 <head>
     <meta charset="UTF-8">
-    <title>登录</title>
+    <title>Login</title>
 </head>
 <body>
   <div id = "login">
-    <h1>登录</h1>
+    <h1>登陆</h1>
     <form class="login" [formGroup]="loginForm" (ngSubmit)="onSubmit()">
   
-      <input type="text" formControlName="work_number" placeholder="工号">
+      <input type="text" formControlName="username" placeholder="用户名">
       <input type="password" formControlName="password" placeholder="密码">
       <button type="submit" class="btn">登录</button>
       {{message}}{{route}}
@@ -17,4 +16,3 @@
     没有账号? <button type="button" class="btnz" routerLink="/register">注册</button>
   </div>
 </body>
-
