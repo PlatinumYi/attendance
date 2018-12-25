@@ -15,5 +15,5 @@ API服务、注册服务、登录服务、部门服务、Toast服务、用户状
 3016218110 陈森林
 所有页面的路由，layout组件的html及css
 添加add、审批judge、假期详情detail、主页dashboard的ts代码
-菜单header的html、css、ts等全部
+菜单header的全部实现。
 
